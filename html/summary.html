@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/summaryshop.css">
+    <title>Summary</title>
+    <!-- Bootstrap CSS -->
+    <link
+        rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+    />
+    <!-- Bootstrap JS -->
+    <script
+        src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+    ></script>
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;400;700&display=swap">
+</head>
+<body class="bg-light">
+    <div id="preloader"></div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Navbar</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="order.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Summary</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="container mt-4">
+        <h2>สรุปการสั่งซื้อ</h2>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">รหัสสินค้า</th>
+                  <th scope="col">ชื่อสินค้า</th>
+                  <th scope="col">ราคา</th>
+                  <th scope="col">จำนวน</th>
+                  <th scope="col">ราคารวม</th>
+                  <th scope="col">ลบ</th>
+                </tr>
+              </thead>
+              <tbody id="basket-list">
+                <!-- รายการอาหารในตะกร้าจะถูกเพิ่มที่นี่ -->
+              </tbody>
+            </table>
+        </div>
+      </div>
+
+    <script src="../js/summmaryshop.js"></script>
+</body>
+</html>
