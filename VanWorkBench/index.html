@@ -1,13 +1,94 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TEST</title>
+    <title>รายการอาหารที่สั่ง</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .menu {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 20px;
+        }
+        .menu-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .menu-item img {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+        }
+        #ordered-items {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 20px;
+        }
+        .ordered-item {
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .ordered-item img {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+        }
+    </style>
 </head>
 <body>
-    <h1>TEST</h1>
-    <p>TEST</p>
-    <!-- ,woakdwk -->
+    <h1>เมนูอาหาร</h1>
+    <div class="menu">
+        <div class="menu-item" data-image="../img/ผัดไทยกุ้งสด-2.jpg">
+            <img src="../img/ผัดไทยกุ้งสด-2.jpg" alt="ผัดไทย">
+            <span>ผัดไทย</span>
+            <button onclick="order(this)">สั่ง</button>
+        </div>
+        <div class="menu-item" data-image="../img/1013450006458_1_20220906144403.webp">
+            <img src="../img/1013450006458_1_20220906144403.webp" alt="แกงเขียวหวาน">
+            <span>แกงเขียวหวาน</span>
+            <button onclick="order(this)">สั่ง</button>
+        </div>
+        <div class="menu-item" data-image="../img/ข้าวผัดซีอิ๊ว-31-1024x1024.jpg">
+            <img src="../img/ข้าวผัดซีอิ๊ว-31-1024x1024.jpg" alt="ข้าวผัด">
+            <span>ข้าวผัด</span>
+            <button onclick="order(this)">สั่ง</button>
+        </div>
+        <div class="menu-item" data-image="../img/RT1759_ImageBannerMobile_960x633_New_.jpg">
+            <img src="../img/RT1759_ImageBannerMobile_960x633_New_.jpg" alt="ส้มตำ">
+            <span>ส้มตำ</span>
+            <button onclick="order(this)">สั่ง</button>
+        </div>
+    </div>
+
+    <h2>รายการที่สั่ง</h2>
+    <div id="ordered-items"></div>
+
+    <script>
+        function order(button) {
+            const menuItem = button.parentElement;
+            const item = menuItem.querySelector('span').innerText;
+            const image = menuItem.getAttribute('data-image');
+            
+            const orderedItems = document.getElementById('ordered-items');
+            const newItem = document.createElement('div');
+            newItem.className = 'ordered-item';
+            newItem.innerHTML = `<img src="${image}" alt="${item}"><br>${item}`;
+            orderedItems.appendChild(newItem);
+        }
+    </script>
 </body>
 </html>
