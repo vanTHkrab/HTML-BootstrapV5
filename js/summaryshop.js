@@ -113,8 +113,42 @@ function printOrder() {
 
     let printWindow = window.open('', '', 'height=500,width=800');
     printWindow.document.write('<html><head><title>สรุปการสั่งซื้อ</title>');
-    printWindow.document.write('<style>table {width: 100%; border-collapse: collapse;} table, th, td {border: 1px solid black;} th, td {padding: 10px; text-align: left;} .total-price {font-size: 1.5rem; font-weight: bold;}</style>');
-    printWindow.document.write('</head><body >');
+    printWindow.document.write(`
+        <style>
+            @media print {
+                body {
+                    font-family: 'Kanit', sans-serif;
+                    background-color: #fcf2d1;
+                }
+                h2 {
+                    color: #502404;
+                    text-align: center;
+                }
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                }
+                table, th, td {
+                    border: 1px solid black;
+                }
+                th, td {
+                    padding: 10px;
+                    text-align: left;
+                }
+                th {
+                    background-color: #502404;
+                    color: white;
+                }
+                .total-price {
+                    font-size: 1.5rem;
+                    font-weight: bold;
+                    text-align: right;
+                    color: #502404;
+                }
+            }
+        </style>
+    `);
+    printWindow.document.write('</head><body>');
     printWindow.document.write(printContents);
     printWindow.document.write('</body></html>');
     printWindow.document.close();
