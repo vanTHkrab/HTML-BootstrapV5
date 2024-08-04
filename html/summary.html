@@ -40,7 +40,12 @@
         }
 
         .container {
-            margin-top: 50px;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         h2 {
@@ -51,13 +56,13 @@
         }
 
         .table thead th {
-            background-color: #502404;
+            background-color: #92572d;
             /* สีน้ำตาล */
             color: white;
         }
 
         .table tbody tr:nth-child(even) {
-            background-color: #f2f2f2;
+            background-color: #dea58f;
         }
 
         .total-price {
@@ -76,14 +81,19 @@
         }
 
         .btn-order {
-            background-color: #00b106;
+            background-color: #009216;
             /* สีเขียว */
         }
 
         .btn-clear,
         .btn-remove {
-            background-color: #f44336;
+            background-color: #dd1203;
             /* สีแดง */
+        }
+
+        .btn-back {
+            background-color: #787878;
+            /* สีน้ำตาล */
         }
 
         footer {
@@ -94,6 +104,7 @@
             color: white;
             text-align: center;
         }
+
     </style>
 </head>
 
@@ -124,15 +135,22 @@
         <div class="text-center mt-4">
             <button class="btn btn-order" onclick="confirmOrder()">สั่งอาหาร</button>
             <button class="btn btn-clear" onclick="clearBasket()">ล้างรายการอาหาร</button>
+            <button class="btn btn-back" onclick="goBack()">ย้อนกลับ</button>
         </div>
     </div>
 
-    <footer>
-        <p>©2024 ไอ้พีท</p>
+    <footer style="background-color: #acacac; padding: 20px; text-align: center; border-top: 1px solid #e7e7e7; position: fixed; bottom: 0; width: 100%;">
+        <p style="margin: 0; font-family: 'Arial', sans-serif; color: #333;">© 2024 สี่สหายโบราณคลาสสิค, Inc</p>
     </footer>
+    
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../js/summaryshop.js"></script>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
 </body>
 
 </html>

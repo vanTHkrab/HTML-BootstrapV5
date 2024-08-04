@@ -8,7 +8,7 @@
 }
 
 body {
-    background-color: #fcf2d1; /* สีพื้นหลังอ่อน */
+    background-color: #fcf2d1 url();  /* สีพื้นหลังอ่อน */
 }
 
 #preloader {
