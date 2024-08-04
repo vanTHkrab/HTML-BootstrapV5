@@ -17,10 +17,64 @@
     <!-- Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;400;700&display=swap">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@200;400;700&display=swap');
+
+        body {
+            font-family: 'Kanit', sans-serif;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .table thead th {
+            background-color: #3c77b2;
+            color: white;
+        }
+
+        .table tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .total-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .btn {
+            font-size: 1.2rem;
+            margin: 5px;
+            padding: 10px 20px;
+        }
+
+        .btn-success {
+            background-color: #4CAF50;
+            border: none;
+        }
+
+        .btn-danger {
+            background-color: #f44336;
+            border: none;
+        }
+
+        footer {
+            margin-top: 50px;
+            padding: 10px 0;
+            background-color: #3c77b2;
+            color: white;
+            text-align: center;
+        }
+    </style>
 </head>
 <body class="bg-light">
-    <!-- <div id="preloader"></div> -->
-    <div class="container mt-4">
+    <div id="preloader"></div>
+    <div class="container">
         <h2>สรุปการสั่งซื้อ</h2>
         <div class="table-responsive">
           <table class="table table-bordered">
@@ -39,7 +93,18 @@
               </tbody>
             </table>
         </div>
+        <div class="text-end">
+            <h4 class="total-price">รวมทั้งหมด: <span id="total-price">0</span> บาท</h4>
+        </div>
+        <div class="text-center mt-4">
+            <button class="btn btn-success" onclick="confirmOrder()">สั่งอาหาร</button>
+            <button class="btn btn-danger" onclick="clearBasket()">ล้างรายการอาหาร</button>
+        </div>
       </div>
+
+    <footer>
+        <p>©2024 ไอ้พีท</p>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../js/summaryshop.js"></script>
