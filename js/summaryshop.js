@@ -12,7 +12,7 @@ function updateBasket() {
             <td>${item.price} บาท</td>
             <td>${item.quantity}</td>
             <td>${item.totalPrice} บาท</td>
-            <td><button class="btn btn-danger" onclick="confirmRemoveFromBasket(${index})">ลบ</button></td>
+            <td><button class="btn btn-remove" onclick="confirmRemoveFromBasket(${index})">ลบ</button></td>
         `;
         basketList.appendChild(row);
         totalPrice += item.totalPrice;
@@ -150,5 +150,5 @@ window.addEventListener("load", function() {
         setTimeout(function() {
             loader.style.display = "none"; // ซ่อน preloader เมื่อแอนิเมชันจบ
         }, 1000); // ระยะเวลาเดียวกับ transition ใน CSS
-    }, 500); // หน่วงเวลา 2000 มิลลิวินาที (2 วินาที) ก่อนเริ่ม fade out
+    }, 500); // หน่วงเวลา 500 มิลลิวินาที (0.5 วินาที) ก่อนเริ่ม fade out
 });
