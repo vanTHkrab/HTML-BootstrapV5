@@ -1,6 +1,5 @@
-<?php require_once '../../../server/config.php';
+<?php require_once '../../../server/config.php'; ?>
 
-?>
 
 <!DOCTYPE html>
 <html lang="en"> <!--begin::Head-->
@@ -64,104 +63,8 @@
         <?php require('./components/sidebar.php') ?>
         <main class="app-main"> <!--begin::App Content Header-->
 
-            <div class="container mt-4">
-                <h3>Candidate Summary</h3>
-                <div class="mt-4">
-                    <h5>นักศึกษาทั้งหมด: <span id="total-students"></span> คน</h5>
-                    <h5>นักศึกษาที่ทำการโหวตไปแล้วมีทั้งหมด: <span id="total-student-vote"></span> คน</h5>
-                    <h5>นักศึกษาที่ยังไม่ได้โหวตมีทั้งหมด: <span id="total-student-notvote"></span> คน</h5>
-                </div>
-                <form class="form-inline mb-3" method="get" id="search-form">
-                    <div class="form-group">
-                        <input type="search" name="search" class="form-control mb-4" placeholder="Search..." id="search_user">
-                        <!--Male Female LGBTQ btn select-->
-                        <div class="btn-group ml-2" role="group" aria-label="Basic radio toggle button group">
-                            <input type="radio" class="btn-check" name="gender" id="btnradio1" value="Male" autocomplete="off">
-                            <label class="btn btn-outline-primary" for="btnradio1">Male</label>
-                            <input type="radio" class="btn-check" name="gender" id="btnradio2" value="Female" autocomplete="off">
-                            <label class="btn btn-outline-primary" for="btnradio2">Female</label>
-                            <input type="radio" class="btn-check" name="gender" id="btnradio3" value="LGBTQ" autocomplete="off">
-                            <label class="btn btn-outline-primary" for="btnradio3">LGBTQ</label>
-                            <input type="radio" class="btn-check" name="gender" id="btnradio4" value="All" autocomplete="off" checked>
-                            <label class="btn btn-outline-primary" for="btnradio4">All</label>
-                        </div>
-                        <button type="submit" class="btn btn-primary ml-2">Search</button>
-                    </div>
-                </form>
+        
 
-                <table class="table table-dark table-striped table-sortable" id="candidate-summary-table">
-                    <thead>
-                        <tr>
-                            <th class="text-center" data-sort="STUDENTID">STUDENTID <span class="icon-arrow">&#9650;</span></th>
-                            <th class="text-center" data-sort="STUDENTNAME">Candidate <span class="icon-arrow">&#9650;</span></th>
-                            <th class="text-center" data-sort="STUDENTGENDER">Gender<span class="icon-arrow">&#9650;</span></th>
-                            <th class="text-center" data-sort="Votes">Votes <span class="icon-arrow">&#9650;</span></th>
-                        </tr>
-                    </thead>
-                    <tbody id="show-list" class="table"></tbody>
-                </table>
-            </div>
-            <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.min.js" integrity="sha256-+vh8GkaU7C9/wbSLIcwq82tQ2wTf44aOHA8HlBMwRI8=" crossorigin="anonymous"></script>
-            <script>
-                const populateTable = (candidates, candidateVotes) => {
-                    const tbody = document.getElementById('show-list');
-                    tbody.innerHTML = '';
-
-                    candidates.forEach(candidate => {
-                        const candidateID = candidate.STUDENTID;
-                        const candidateName = (candidate.STUDENTNAME + " " + candidate.STUDENTSURNAME) || 'N/A';
-                        const candidateGender = candidate.STUDENTGENDER || 'N/A';
-                        const votes = candidateVotes[candidateID]?.Votes || 0;
-
-                        const row = `
-                            <tr>
-                                <td class="text-center">${candidateID}</td>
-                                <td>${candidateName}</td>
-                                <td class="text-center">${candidateGender}</td>
-                                <td class="text-center" id="votes-${candidateID}">${votes}</td>
-                            </tr>
-                        `;
-                        tbody.innerHTML += row;
-                    });
-                };
-
-                const fetchData = (query = '', gender = '', sortField = '', order = '') => {
-                    let url = `helper/count.php?search=${query}&gender=${gender}`;
-                    if (sortField && order) {
-                        console.log(sortField, order);
-                        url += `&sortField=${sortField}&order=${order}`;
-                    }
-                    fetch(url)
-                        .then(response => response.json())
-                        .then(data => {
-                            populateTable(data.candidates, data.candidateVotes);
-                            document.getElementById('total-students').innerText = data.totalStudents;
-                            document.getElementById('total-student-vote').innerText = data.totalVotes;
-                            document.getElementById('total-student-notvote').innerText = data.totalStudents - data.totalVotes;
-                        })
-                        .catch(error => console.error('Error fetching data:', error));
-                };
-
-                document.addEventListener('DOMContentLoaded', () => {
-                    fetchData();
-
-                    document.querySelectorAll('.table-sortable th[data-sort]').forEach(header => {
-                        header.addEventListener('click', () => {
-                            const sortField = header.getAttribute('data-sort');
-                            const order = header.classList.contains('asc') ? 'desc' : 'asc';
-                            document.querySelectorAll('.table-sortable th').forEach(th => th.classList.remove('asc', 'desc', 'active'));
-                            header.classList.add(order, 'active');
-
-                            fetchData(
-                                document.getElementById('search_user').value,
-                                document.querySelector('input[name="gender"]:checked').value,
-                                sortField,
-                                order
-                            );
-                        });
-                    });
-                });
-            </script>
         </main>
         <?php require('./components/footer.php') ?>
     </div> <!--end::App Wrapper--> <!--begin::Script--> <!--begin::Third Party Plugin(OverlayScrollbars)-->

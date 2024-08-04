@@ -5,7 +5,7 @@ class Database
     private $host = "localhost";
     private $user = "root";
     private $password = "vA-Me.@2686019363&NW";
-    private $database = "html-bootstrap5-shop";
+    private $database = "html-boostrap5-shop";
     private $conn;
 
     public function __construct()
