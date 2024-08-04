@@ -1,47 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/summaryshop.css">
+    <link rel="shortcut icon" href="../img/Logo-Shop.png" type="image/x-icon">
     <title>Summary</title>
     <!-- Bootstrap CSS -->
-    <link
-        rel="stylesheet"
-        href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
-    />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" />
     <!-- Bootstrap JS -->
-    <script
-        src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
-    ></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
     <!-- Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;400;700&display=swap">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@200;400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Kanit', sans-serif;
+        }
+
+        body {
+            background-color: #fcf2d1;
+            /* สีพื้นหลังอ่อน */
+        }
+
+        #preloader {
+            background: #ffffff url(../img/Preload2.gif) no-repeat center center;
+            height: 100vh;
+            width: 100%;
+            position: fixed;
+            z-index: 100;
+            opacity: 1;
+            transition: opacity 1s ease-out;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #502404;
+            /* สีน้ำตาล */
+        }
+
+        .table thead th {
+            background-color: #502404;
+            /* สีน้ำตาล */
+            color: white;
+        }
+
+        .table tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .total-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #502404;
+            /* สีน้ำตาล */
+        }
+
+        .btn {
+            font-size: 1.2rem;
+            margin: 5px;
+            padding: 10px 20px;
+            border: none;
+            color: white;
+        }
+
+        .btn-order {
+            background-color: #00b106;
+            /* สีเขียว */
+        }
+
+        .btn-clear,
+        .btn-remove {
+            background-color: #f44336;
+            /* สีแดง */
+        }
+
+        footer {
+            margin-top: 50px;
+            padding: 10px 0;
+            background-color: #502404;
+            /* สีน้ำตาล */
+            color: white;
+            text-align: center;
+        }
+    </style>
 </head>
+
 <body class="bg-light">
-    <!-- <div id="preloader"></div> -->
-    <div class="container mt-4">
+    <div id="preloader"></div>
+    <div class="container">
         <h2>สรุปการสั่งซื้อ</h2>
         <div class="table-responsive">
-          <table class="table table-bordered">
-              <thead class="thead-light">
-                <tr>
-                  <th scope="col">รหัสสินค้า</th>
-                  <th scope="col">ชื่อสินค้า</th>
-                  <th scope="col">ราคา</th>
-                  <th scope="col">จำนวน</th>
-                  <th scope="col">ราคารวม</th>
-                  <th scope="col">ลบ</th>
-                </tr>
-              </thead>
-              <tbody id="basket-list">
-                <!-- รายการอาหารในตะกร้าจะถูกเพิ่มที่นี่ -->
-              </tbody>
+            <table class="table table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">รหัสสินค้า</th>
+                        <th scope="col">ชื่อสินค้า</th>
+                        <th scope="col">ราคา</th>
+                        <th scope="col">จำนวน</th>
+                        <th scope="col">ราคารวม</th>
+                        <th scope="col">ลบ</th>
+                    </tr>
+                </thead>
+                <tbody id="basket-list">
+                    <!-- รายการอาหารในตะกร้าจะถูกเพิ่มที่นี่ -->
+                </tbody>
             </table>
         </div>
-      </div>
+        <div class="text-end">
+            <h4 class="total-price">รวมทั้งหมด: <span id="total-price">0</span> บาท</h4>
+        </div>
+        <div class="text-center mt-4">
+            <button class="btn btn-order" onclick="confirmOrder()">สั่งอาหาร</button>
+            <button class="btn btn-clear" onclick="clearBasket()">ล้างรายการอาหาร</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>©2024 ไอ้พีท</p>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../js/summaryshop.js"></script>
 </body>
+
 </html>
