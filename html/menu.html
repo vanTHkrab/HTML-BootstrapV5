@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/menu.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap');
+
+        * {
+            font-family: 'Kanit', sans-serif;
+        }
+
+        .bg-session {
+            background-color: #3c77b2 !important;
+        }
+
+        .bg-body-tertiary {
+            background-color: #f8f9fa !important;
+        }
+
+        .navbar {
+            background-color: #ffffff !important;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+        }
+
+        .nav-bg,
+        .nav-bg-blue {
+            background-color: #3c77b2 !important;
+        }
+
+        .nav-item {
+            margin: 0 1px;
+        }
+
+        .nav-item:hover {
+            border-bottom: 2px solid #ffffff;
+        }
+
+        .text-section {
+            border-left: 10px solid #3c77b2;
+            border-radius: 12PX;
+            padding-left: 10px;
+            font-size: 60px;
+        }
+
+        .cart-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        .cart-icon {
+            font-size: 2rem;
+            color: #ffffff;
+        }
+
+        .cart-count {
+            background-color: red;
+            color: #ffffff;
+            border-radius: 50%;
+            padding: 0 10px;
+            margin-left: 5px;
+            font-size: 1rem;
+        }
+
+        .card img {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .category {
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav-bg">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary d-flex bg-session border-bottom" style="margin: 0 260px; border-radius: 0 0 10px 10px;">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <h1>หกสหายสายโบราณ</h1>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link fs-4 active" aria-current="page" href="../index.html"><i class="bi bi-house-door"></i>Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fs-4 active" href="#" onclick="showCategory('main-dishes')"><i class='bx bx-food-menu'></i>อาหารหลัก</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fs-4 active" href="#" onclick="showCategory('drinks')"><img src="./img/fork.png" class="mb-1">เครื่องดื่ม</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fs-4 active" href="#" onclick="showCategory('desserts')"><box-icon name='money-withdraw'></box-icon>ของหวาน</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fs-4 active" href="summary.html"><box-icon name='money-withdraw'></box-icon>Bill</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <nav class="navbar navbar-expand-lg bg-body-tertiary d-flex bg-session nav-bg-blue">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                        <li class="nav-item mx-4">
+                            <a class="nav-link active text-white fs-4" aria-current="page" href="#" onclick="showCategory('main-dishes')">อาหารหลัก</a>
+                        </li>
+                        <li class="nav-item mx-4">
+                            <a class="nav-link active text-white fs-4 active" href="#" onclick="showCategory('drinks')">เครื่องดื่ม</a>
+                        </li>
+                        <li class="nav-item mx-4">
+                            <a class="nav-link active text-white fs-4 active" href="#" onclick="showCategory('desserts')">ของหวาน</a>
+                        </li>
+                        <li class="nav-item mx-4">
+                            <a class="nav-link active" href="#"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="cart-container" onclick="goToSummary()">
+        <i class='bx bx-cart cart-icon'></i>
+        <span id="cart-count" class="cart-count">0</span>
+    </div>
+
+    <div class="container mt-4">
+        <h1 class="text-left text-section">
+            <strong>
+                Food List
+            </strong>
+        </h1>
+
+        <div class="category" id="main-dishes">
+            <h2>อาหารหลัก</h2>
+            <div class="row" style="margin-top: 45px;">
+                <div class="col-md-4">
+                    <div class="card" style="width: 24rem;">
+                        <img src="./img/FriedRice.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">ข้าวผัด</h5>
+                            <p class="card-text text-center">ราคา 50 บาท</p>
+                            <div class="d-flex justify-content-between">
+                                <button class="btn btn-danger" onclick="decrementQuantity('ข้าวผัด', 50)">-</button>
+                                <span id="ข้าวผัด-quantity">0</span>
+                                <button class="btn btn-success" onclick="incrementQuantity('ข้าวผัด', 50)">+</button>
+                            </div>
+                            <button class="btn btn-primary mt-2" onclick="confirmAddToBasket('ข้าวผัด', 50)">Add to Basket</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- เพิ่มรายการอาหารหลักอื่นๆ ที่นี่ -->
+            </div>
+        </div>
+
+        <div class="category" id="drinks" style="display: none;">
+            <h2>เครื่องดื่ม</h2>
+            <div class="row" style="margin-top: 45px;">
+                <div class="col-md-4">
+                    <div class="card" style="width: 24rem;">
+                        <img src="./img/Drink.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">ชาเย็น</h5>
+                            <p class="card-text text-center">ราคา 30 บาท</p>
+                            <div class="d-flex justify-content-between">
+                                <button class="btn btn-danger" onclick="decrementQuantity('ชาเย็น', 30)">-</button>
+                                <span id="ชาเย็น-quantity">0</span>
+                                <button class="btn btn-success" onclick="incrementQuantity('ชาเย็น', 30)">+</button>
+                            </div>
+                            <button class="btn btn-primary mt-2" onclick="confirmAddToBasket('ชาเย็น', 30)">Add to Basket</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- เพิ่มรายการเครื่องดื่มอื่นๆ ที่นี่ -->
+            </div>
+        </div>
+
+        <div class="category" id="desserts" style="display: none;">
+            <h2>ของหวาน</h2>
+            <div class="row" style="margin-top: 45px;">
+                <div class="col-md-4">
+                    <div class="card" style="width: 24rem;">
+                        <img src="./img/Dessert.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">บัวลอย</h5>
+                            <p class="card-text text-center">ราคา 40 บาท</p>
+                            <div class="d-flex justify-content-between">
+                                <button class="btn btn-danger" onclick="decrementQuantity('บัวลอย', 40)">-</button>
+                                <span id="บัวลอย-quantity">0</span>
+                                <button class="btn btn-success" onclick="incrementQuantity('บัวลอย', 40)">+</button>
+                            </div>
+                            <button class="btn btn-primary mt-2" onclick="confirmAddToBasket('บัวลอย', 40)">Add to Basket</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- เพิ่มรายการของหวานอื่นๆ ที่นี่ -->
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-body-tertiary text-center p-3 mt-5">
+        <p>©2024 ไอ้พีท</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../js/bootstrap.bundle.js"></script>
+    <script src="../js/order.js"></script>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <script>
+        function showCategory(category) {
+            // ซ่อนทุกหมวดหมู่
+            document.querySelectorAll('.category').forEach(function(el) {
+                el.style.display = 'none';
+            });
+            // แสดงเฉพาะหมวดหมู่ที่เลือก
+            document.getElementById(category).style.display = 'block';
+        }
+        // แสดงหมวดหมู่แรกเมื่อโหลดหน้าเว็บ
+        document.addEventListener('DOMContentLoaded', function() {
+            showCategory('main-dishes');
+        });
+    </script>
+</body>
+</html>
