@@ -200,7 +200,7 @@
             0% {
                 background-position: 100%;
             }
-            
+
 
             100% {
                 background-position: -100%;
@@ -250,12 +250,10 @@
                                     class="bi bi-house-door"></i>หน้าหลัก</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link fs-4 active" href="#" onclick="showCategory('main-dishes')"><i
-                                    class='bx bx-phone'></i>ติดต่อ</a>
+                            <a class="nav-link fs-4 active" href="#"><i class='bx bx-phone'></i>ติดต่อ</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link fs-4 active" href="#" onclick="showCategory('drinks')"><i
-                                    class="bx bx-book-open"></i>เกี่ยวกับ</a>
+                            <a class="nav-link fs-4 active" href="#"><i class="bx bx-book-open"></i>เกี่ยวกับ</a>
                         </li>
                     </ul>
                 </div>
@@ -268,15 +266,15 @@
                     <ul class="navbar-nav">
                         <li class="nav-item mx-4">
                             <a class="nav-link active text-white fs-4" aria-current="page" href="#"
-                                onclick="showCategory('main-dishes')">อาหารหลัก</a>
+                                onclick="showCategory('food')">อาหารหลัก</a>
                         </li>
                         <li class="nav-item mx-4">
                             <a class="nav-link active text-white fs-4 active" href="#"
-                                onclick="showCategory('drinks')">เครื่องดื่ม</a>
+                                onclick="showCategory('water')">เครื่องดื่ม</a>
                         </li>
                         <li class="nav-item mx-4">
                             <a class="nav-link active text-white fs-4 active" href="#"
-                                onclick="showCategory('desserts')">ของหวาน</a>
+                                onclick="showCategory('dessert')">ของหวาน</a>
                         </li>
                         <li class="nav-item mx-4">
                             <a class="nav-link active" href="#"></a>
@@ -284,7 +282,7 @@
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav>        
     </div>
 
     <div class="cart-container" onclick="goToSummary()">
@@ -298,77 +296,22 @@
             </strong>
         </h1>
 
-        <div class="category" id="main-dishes">
+        <div class="category" id="food" style="display: block;">
             <h2>อาหารหลัก</h2>
-            <div class="row" style="margin-top: 45px;">
-                <div class="col-md-4">
-                    <div class="card" style="width: 24rem;">
-                        <img src="./img/FriedRice.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title text-center">ข้าวผัด</h5>
-                            <p class="card-text text-center">ราคา 50 บาท</p>
-                            <div class="d-flex justify-content-between">
-                                <button class="btn btn-danger" onclick="decrementQuantity('ข้าวผัด', 50)">-</button>
-                                <span id="ข้าวผัด-quantity">0</span>
-                                <button class="btn btn-success" onclick="incrementQuantity('ข้าวผัด', 50)">+</button>
-                            </div>
-                            <button class="btn btn-primary mt-2" id="button"
-                                onclick="confirmAddToBasket('ข้าวผัด', 50)"><span
-                                    class="text">สั่งซื้อ</span><span>ขอบคุณ</span></button>
-                        </div>
-                    </div>
-                </div>
-                <!-- เพิ่มรายการอาหารหลักอื่นๆ ที่นี่ -->
-            </div>
+            <div class="row" style="margin-top: 45px;"></div>
         </div>
-
-        <div class="category" id="drinks" style="display: none;">
+        
+        <div class="category" id="water" style="display: none;">
             <h2>เครื่องดื่ม</h2>
-            <div class="row" style="margin-top: 45px;">
-                <div class="col-md-4">
-                    <div class="card" style="width: 24rem;">
-                        <img src="./img/Drink.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title text-center">ชาเย็น</h5>
-                            <p class="card-text text-center">ราคา 30 บาท</p>
-                            <div class="d-flex justify-content-between">
-                                <button class="btn btn-danger" onclick="decrementQuantity('ชาเย็น', 30)">-</button>
-                                <span id="ชาเย็น-quantity">0</span>
-                                <button class="btn btn-success" onclick="incrementQuantity('ชาเย็น', 30)">+</button>
-                            </div>
-                            <button class="btn btn-primary mt-2" id="button"
-                                onclick="confirmAddToBasket('ชาเย็น', 30)"><span
-                                    class="text">สั่งซื้อ</span><span>ขอบคุณ</span></button>
-                        </div>
-                    </div>
-                </div>
-                <!-- เพิ่มรายการเครื่องดื่มอื่นๆ ที่นี่ -->
-            </div>
+            <div class="row" style="margin-top: 45px;"></div>
         </div>
-
-        <div class="category" id="desserts" style="display: none;">
+        
+        <div class="category" id="dessert" style="display: none;">
             <h2>ของหวาน</h2>
-            <div class="row" style="margin-top: 45px;">
-                <div class="col-md-4">
-                    <div class="card" style="width: 24rem;">
-                        <img src="./img/Dessert.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title text-center">บัวลอย</h5>
-                            <p class="card-text text-center">ราคา 40 บาท</p>
-                            <div class="d-flex justify-content-between">
-                                <button class="btn btn-danger" onclick="decrementQuantity('บัวลอย', 40)">-</button>
-                                <span id="บัวลอย-quantity">0</span>
-                                <button class="btn btn-success" onclick="incrementQuantity('บัวลอย', 40)">+</button>
-                            </div>
-                            <button class="btn btn-primary mt-2" id="button"
-                                onclick="confirmAddToBasket('บัวลอย', 40)"><span
-                                    class="text">สั่งซื้อ</span><span>ขอบคุณ</span></button>
-                        </div>
-                    </div>
-                </div>
-                <!-- เพิ่มรายการของหวานอื่นๆ ที่นี่ -->
-            </div>
+            <div class="row" style="margin-top: 45px;"></div>
         </div>
+        
+
     </div>
 
     <footer class="bg-body-tertiary text-center p-3 mt-5">
@@ -381,18 +324,71 @@
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <script>
         function showCategory(category) {
-            // ซ่อนทุกหมวดหมู่
             document.querySelectorAll('.category').forEach(function (el) {
+                console.log(el);
                 el.style.display = 'none';
             });
-            // แสดงเฉพาะหมวดหมู่ที่เลือก
             document.getElementById(category).style.display = 'block';
         }
-        // แสดงหมวดหมู่แรกเมื่อโหลดหน้าเว็บ
         document.addEventListener('DOMContentLoaded', function () {
-            showCategory('main-dishes');
+            fetchLists();
+            showCategory('food');
         });
+
+        let lists = {
+            food: [],
+            water: [],
+            dessert: []
+        };
+
+        const populateCategory = (category) => {
+            const container = document.getElementById(category);
+            const categoryData = lists[category];
+
+            console.log(categoryData);
+
+            container.querySelector('.row').innerHTML = '';
+
+            categoryData.forEach(item => {
+                const card = `
+            <div class="col-md-4">
+                <div class="card" style="width: 24rem;">
+                    <img src="../img/list/${item.image}" class="card-img-top" alt="${item.name}">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">${item.name}</h5>
+                        <p class="card-text text-center">ราคา ${item.price} บาท</p>
+                        <div class="d-flex justify-content-between">
+                            <button class="btn btn-danger" onclick="decrementQuantity('${item.name}', ${item.price})">-</button>
+                            <span id="${item.name}-quantity">0</span>
+                            <button class="btn btn-success" onclick="incrementQuantity('${item.name}', ${item.price})">+</button>
+                        </div>
+                        <button class="btn btn-primary mt-2" id="button"
+                            onclick="confirmAddToBasket('${item.name}', ${item.price})">
+                            <span class="text">สั่งซื้อ</span><span>ขอบคุณ</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+                container.querySelector('.row').innerHTML += card;
+            });
+        };
+
+        const fetchLists = async () => {
+            try {
+                const response = await fetch('../server/list.php');
+                console.log(response);
+                lists = await response.json();
+                populateCategory('food');
+                populateCategory('water');
+                populateCategory('dessert');
+            } catch (error) {
+                console.error("Error fetching data: ", error);
+            }
+        };
+
     </script>
+
 </body>
 
 </html>
