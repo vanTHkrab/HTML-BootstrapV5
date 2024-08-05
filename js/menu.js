@@ -74,3 +74,15 @@ function goToSummary() {
 }
 
 document.addEventListener('DOMContentLoaded', updateCartCount);
+
+
+var loader = document.getElementById('preloader');
+window.addEventListener("load", function() {
+    setTimeout(function() {
+        loader.style.opacity = "0"; // ตั้งค่า opacity เป็น 0 เพิ่อทำให้หายไป
+        setTimeout(function() {
+            loader.style.display = "none"; // ซ่อน preloader เมื่อแอนิเมชันจบ
+        }, 1000); // ระยะเวลาเดียวกับ transition ใน CSS
+    }, 500); // หน่วงเวลา 2000 มิลลิวินาที (2 วินาที) ก่อนเริ่ม fade out
+});
+

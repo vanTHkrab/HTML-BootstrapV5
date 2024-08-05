@@ -7,6 +7,10 @@
     font-family: 'Kanit', sans-serif;
 }
 
+body {
+    background-color: #fcf2d1 url();  /* สีพื้นหลังอ่อน */
+}
+
 #preloader {
     background: #ffffff url(../img/Preload2.gif) no-repeat center center;
     height: 100vh;
@@ -17,19 +21,51 @@
     transition: opacity 1s ease-out;
 }
 
-body {
-    padding: 20px;
+.container {
+    margin-top: 50px;
 }
 
 h2 {
-    margin-bottom: 20px;
-}
-
-.table thead {
-    background-color: #8f8f8f;
-}
-
-.table th, .table td {
     text-align: center;
-    vertical-align: middle;
+    margin-bottom: 30px;
+    color: #502404; /* สีน้ำตาล */
+}
+
+.table thead th {
+    background-color: #502404; /* สีน้ำตาล */
+    color: white;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.total-price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #502404; /* สีน้ำตาล */
+}
+
+.btn {
+    font-size: 1.2rem;
+    margin: 5px;
+    padding: 10px 20px;
+    border: none;
+    color: white;
+}
+
+.btn-order {
+    background-color: #00ff08; /* สีเขียว */
+}
+
+.btn-clear, .btn-remove {
+    background-color: #f44336; /* สีแดง */
+}
+
+footer {
+    margin-top: 50px;
+    padding: 10px 0;
+    background-color: #502404; /* สีน้ำตาล */
+    color: white;
+    text-align: center;
 }
