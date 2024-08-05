@@ -70,7 +70,7 @@ function updateCartCount() {
 }
 
 function goToSummary() {
-    window.location.href = "summary.html";
+    window.location.href = "summary.php";
 }
 
 document.addEventListener('DOMContentLoaded', updateCartCount);

@@ -175,6 +175,47 @@ function clearBasketDirect() {
     updateBasket();
 }
 
+function insertDataToSummary(item) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', '../server/quary_list.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            const response = JSON.parse(xhr.responseText);
+            if (response.success) {
+                Swal.fire('สำเร็จ', response.message, 'success');
+            } else {
+                Swal.fire('เกิดข้อผิดพลาด', response.message, 'error');
+            }
+        }
+    };
+
+    const data = `name=${encodeURIComponent(item.name)}&price=${item.price}&amount=${item.quantity}`;
+    xhr.send(data);
+}
+
+function confirmOrder() {
+    Swal.fire({
+        title: 'ยืนยันการสั่งอาหาร',
+        text: 'คุณต้องการสั่งอาหารหรือไม่?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'สั่งอาหาร',
+        cancelButtonText: 'ยกเลิก'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            const basket = JSON.parse(localStorage.getItem('basket')) || [];
+            basket.forEach(item => {
+                insertDataToSummary(item);
+            });
+            printOrder();
+            orderFood();
+        }
+    });
+}
+
+
 document.addEventListener('DOMContentLoaded', updateBasket);
 
 var loader = document.getElementById('preloader');
