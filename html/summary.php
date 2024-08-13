@@ -134,7 +134,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">ติดต่อเรา</a>
+                    <a class="nav-link fs-4 active" href="./about.php"><i class='bx bx-phone'></i>ติดต่อ</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">เกี่ยวกับเรา</a>

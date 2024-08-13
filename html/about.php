@@ -23,6 +23,16 @@ require_once('../server/config.php');
             background-color: #F5DEB3 !important;
         }
 
+        .card-title {
+            font-size: 30px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        li{
+            font-size: 24px;
+        }
+
         .bg-session {
             background-color: #3c77b2 !important;
         }
@@ -234,7 +244,6 @@ require_once('../server/config.php');
 </head>
 
 <body>
-    <div id="preloader"></div>
     <div class="nav-bg">
         <nav class="navbar navbar-expand-lg bg-body-tertiary d-flex border-bottom"
             style="margin: 0 260px; border-radius: 0 0 10px 10px;">
@@ -257,152 +266,50 @@ require_once('../server/config.php');
                             <a class="nav-link fs-4 active" href="./about.php"><i class='bx bx-phone'></i>ติดต่อ</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link fs-4 active" href="#"><i class="bx bx-book-open"></i>เกี่ยวกับ</a>
+                            <a class="nav-link fs-4 active" href="#"><i class="bx bx-book-open"></i>ติดต่อเรา</a>
                         </li>
-                        <?php if($_SESSION['Status'] == 'GUEST'): ?>
-                        <li class="nav-item">
-                            <a class="nav-link fs-4 active" href="../html/login.php"><i class="bi bi-box-arrow-in-right"></i>เข้าสู่ระบบ</a>
-                        </li>
+                        <?php if ($_SESSION['Status'] == 'GUEST'): ?>
+                            <li class="nav-item">
+                                <a class="nav-link fs-4 active" href="../html/login.php"><i class="bi bi-box-arrow-in-right"></i>เข้าสู่ระบบ</a>
+                            </li>
                         <?php else: ?>
-                        <li class="nav-item">
-                            <a class="nav-link fs-4 active" href="./logout.php"><i class="bi bi-box-arrow-right"></i>ออกจากระบบ</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link fs-4 active" href="./logout.php"><i class="bi bi-box-arrow-right"></i>ออกจากระบบ</a>
+                            </li>
                         <?php endif; ?>
                     </ul>
                 </div>
             </div>
         </nav>
 
-        <nav class="navbar navbar-expand-lg bg-body-tertiary d-flex bg-session nav-bg-blue">
-            <div class="container-fluid">
-                <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
-                    <ul class="navbar-nav">
-                        <li class="nav-item mx-4">
-                            <a class="nav-link active text-white fs-4" aria-current="page" href="#"
-                                onclick="showCategory('food')">อาหารหลัก</a>
-                        </li>
-                        <li class="nav-item mx-4">
-                            <a class="nav-link active text-white fs-4 active" href="#"
-                                onclick="showCategory('water')">เครื่องดื่ม</a>
-                        </li>
-                        <li class="nav-item mx-4">
-                            <a class="nav-link active text-white fs-4 active" href="#"
-                                onclick="showCategory('dessert')">ของหวาน</a>
-                        </li>
-                        <li class="nav-item mx-4">
-                            <a class="nav-link active" href="#"></a>
-                        </li>
-                    </ul>
+    </div>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-12">
+                <div class="text-section">
+                    ติดต่อ
                 </div>
             </div>
-        </nav>        
-    </div>
-
-    <div class="cart-container" onclick="goToSummary()">
-        <i class='bx bx-cart cart-icon'></i>
-        <span id="cart-count" class="cart-count">0</span>
-    </div>
-
-    <div class="container mt-4">
-        <h1 class="text-left text-section">
-            <strong><a href="#" class="btn-shine">Gourmet Dining Selections</a>
-            </strong>
-        </h1>
-
-        <div class="category" id="food" style="display: block;">
-            <h2>อาหารหลัก</h2>
-            <div class="row" style="margin-top: 45px;"></div>
-        </div>
-        
-        <div class="category" id="water" style="display: none;">
-            <h2>เครื่องดื่ม</h2>
-            <div class="row" style="margin-top: 45px;"></div>
-        </div>
-        
-        <div class="category" id="dessert" style="display: none;">
-            <h2>ของหวาน</h2>
-            <div class="row" style="margin-top: 45px;"></div>
-        </div>
-        
-
-    </div>
-
-    <footer class="bg-body-tertiary text-center p-3 mt-5">
-        <p>©2024 ไอ้พีท</p>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="../js/bootstrap.bundle.js"></script>
-    <script src="../js/menu.js"></script>
-    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-    <script>
-        function showCategory(category) {
-            document.querySelectorAll('.category').forEach(function (el) {
-                console.log(el);
-                el.style.display = 'none';
-            });
-            document.getElementById(category).style.display = 'block';
-        }
-        document.addEventListener('DOMContentLoaded', function () {
-            fetchLists();
-            showCategory('food');
-        });
-
-        let lists = {
-            food: [],
-            water: [],
-            dessert: []
-        };
-
-        const populateCategory = (category) => {
-            const container = document.getElementById(category);
-            const categoryData = lists[category];
-
-            console.log(categoryData);
-
-            container.querySelector('.row').innerHTML = '';
-
-            categoryData.forEach(item => {
-                const card = `
-            <div class="col-md-4 mt-4">
-                <div class="card" style="width: 24rem;">
-                    <img src="../img/list/${item.image}" class="card-img-top" alt="${item.name}">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">${item.name}</h5>
-                        <p class="card-text text-center">ราคา ${item.price} บาท</p>
-                        <div class="d-flex justify-content-between">
-                            <button class="btn btn-danger" onclick="decrementQuantity('${item.name}', ${item.price})">-</button>
-                            <span id="${item.name}-quantity">0</span>
-                            <button class="btn btn-success" onclick="incrementQuantity('${item.name}', ${item.price})">+</button>
+            <div>
+                <div class="col-12">
+                    <div class="card mt-5">
+                        <div class="card-body">
+                            <h5 class="card-title"> จัดทำโดย</h5>
+                                <ol>
+                                    <li>นายธนพัทธ์  เขตรัตนา   66127234</li>
+                                    <li>นายจิรัฏฐ์    มุณีกาญจน์ 66130444</li>
+                                    <li>นายทชานน   ศรีสุข    66131103</li>
+                                    <li>นายธีรภัทร์   จงจิตร    66131319</li>
+                                    <li>นายอัษฎาวุฒิ นาคทุ่งเตา 66133505</li>
+                                    <li>นายชนสรณ์   หนูแก้ว   66134172</li>
+                                </ol>
                         </div>
-                        <button class="btn btn-primary mt-2" id="button"
-                            onclick="confirmAddToBasket('${item.name}', ${item.price})">
-                            <span class="text">สั่งซื้อ</span><span>ขอบคุณ</span>
-                        </button>
                     </div>
                 </div>
             </div>
-        `;
-                container.querySelector('.row').innerHTML += card;
-            });
-        };
-
-        const fetchLists = async () => {
-            try {
-                const response = await fetch('../server/list.php');
-                console.log(response);
-                lists = await response.json();
-                populateCategory('food');
-                populateCategory('water');
-                populateCategory('dessert');
-            } catch (error) {
-                console.error("Error fetching data: ", error);
-            }
-        };
-
-    </script>
-    <script src="../js/view.js"></script>
-
+        </div>
+        
+    </div>
 </body>
 
 </html>
